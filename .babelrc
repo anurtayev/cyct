@@ -1,0 +1,20 @@
+{
+    "presets": ["es2015", "stage-0"],
+    "env": {
+        "development": {
+            "plugins": [
+                ["cycle-hmr/xstream", {
+                    "include": [
+                        "**/src/**"
+                    ],
+                    "proxy": {
+                      "debug": "info"
+                    }
+                }]
+            ]
+        },
+        "production": {
+            "plugins": []
+        }
+    }
+}
