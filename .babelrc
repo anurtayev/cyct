@@ -5,11 +5,8 @@
             "plugins": [
                 ["cycle-hmr/xstream", {
                     "include": [
-                        "**/src/**"
-                    ],
-                    "proxy": {
-                      "debug": "info"
-                    }
+                        "**/src/components/**"
+                    ]
                 }]
             ]
         },

@@ -2,7 +2,7 @@
   "name": "m1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/app.js",
   "scripts": {
     "build": "webpack",
     "serve": "cross-env BABEL_ENV=development babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server"
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@cycle/dom": "^12.2.5",
+    "@cycle/isolate": "^1.4.0",
     "@cycle/xstream-run": "^3.1.0",
     "xstream": "^6.4.1"
   }
