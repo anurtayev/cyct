@@ -1,4 +1,5 @@
 import webpack from 'webpack'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 module.exports = {
     entry: [
@@ -18,13 +19,17 @@ module.exports = {
             test: /\.js/,
             loader: 'babel-loader',
             exclude: /node_modules/
+        }, {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract(
+                'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+            )
         }]
     },
 
     plugins: [
         new webpack.NoErrorsPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.IgnorePlugin(/most-adapter/)
+        new webpack.HotModuleReplacementPlugin()
     ],
 
     devServer: {

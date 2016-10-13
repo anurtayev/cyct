@@ -1,22 +1,26 @@
 import xs from 'xstream'
 import {
-	run
+    run
 } from '@cycle/xstream-run'
 import {
-	makeDOMDriver
+    makeDOMDriver
 } from '@cycle/dom'
 
 import MainMenu from './components/MainMenu'
 
 function main(sources) {
 
-	const vdom$ = MainMenu(sources).DOM
+    const props$ = xs.of({
+        categories: ['Pictures', 'Documents', 'Music', 'Movies']
+    })
 
-	return {
-		DOM: vdom$
-	}
+    const vdom$ = MainMenu({...sources, props$}).DOM
+
+    return {
+        DOM: vdom$
+    }
 }
 
 run(main, {
-	DOM: makeDOMDriver('#app')
+    DOM: makeDOMDriver('#app')
 })
