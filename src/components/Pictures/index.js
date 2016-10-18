@@ -5,14 +5,14 @@ import {
 	h1
 } from '@cycle/dom'
 
-function MenuItemBar(sources) {
+function Pictures(sources) {
 	return {
 		DOM: xs.of(
-			div('#mainmenu', [
-				h1({}, 'Menu')
+			div({}, [
+				h1('.login', 'Pictures page...')
 			])
 		)
 	}
 }
 
-export default sources => isolate(MenuItemBar)(sources)
+export default sources => isolate(Pictures)(sources)
