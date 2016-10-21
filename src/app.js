@@ -13,22 +13,27 @@ import Pictures from './components/Pictures'
 import Movies from './components/Movies'
 import Music from './components/Music'
 import ComponentRouter from './util/componentRouter'
+import mergeFlatten from './util/mergeFlatten'
 
 function main(sources) {
-	const routes = {
+	const match$ = sources.router.define({
 		'/': MainMenu,
 		'/documents': Documents,
 		'/pictures': Pictures,
 		'/movies': Movies,
 		'/music': Music,
-	}
+	})
 
-  const page = ComponentRouter({...sources, routes$: xs.of(routes)})
+  const page$ = match$.map(({path, value}) => {
+    return value(Object.assign({}, sources, {
+      router: sources.router.path(path)
+    }))
+  }).debug()
 
-	return {
-    DOM: page.DOM,
-    router: page.route$
-	}
+  return {
+    DOM: mergeFlatten('DOM' , [page$]),
+    router: mergeFlatten('route$', [page$])
+  }
 }
 
 run(main, {

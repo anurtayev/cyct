@@ -29,10 +29,6 @@ function MainMenu(sources) {
 		.events('click')
 		.map(e => '/music')
 
-    const route1$ = xs.of('/music')
-      .compose(delay(3000))
-
-
 	return {
 		DOM: props$.map(props =>
 			div('.container', [
