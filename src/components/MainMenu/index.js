@@ -2,7 +2,7 @@ import xs from 'xstream'
 import isolate from '@cycle/isolate'
 import {nav,a,section,span,div} from '@cycle/dom'
 import delay from 'xstream/extra/delay'
-
+import style from './style1.css'
 
 function renderAnchorTag(category) {
 	return a({
@@ -32,6 +32,7 @@ function MainMenu(sources) {
 	return {
 		DOM: props$.map(props =>
 			div('.container', [
+        div('.pongo','sdfsdfssf'),
 				section('.color-4', [
 					nav('.cl-effect-2', props.categories.map(renderAnchorTag))
 				])
