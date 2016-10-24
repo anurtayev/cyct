@@ -5,35 +5,19 @@ import {
 } from '@cycle/dom'
 
 import style from './style.css'
-import Documents from './components/Documents'
+import Documents from './Documents'
 
-function MainMenu(sources) {
+export default sources => isolate(sources => {
 
-  const state$ = sources.onion.state$
-
-	const props$ = xs.of({
-		categories: ['Pictures', 'Documents', 'Music', 'Movies']
-	})
-
-	const route$ = sources.DOM
-		.select('a')
-		.events('click')
-		.map(e => '/music')
+	const state$ = sources.onion.state$
 
 	return {
-		DOM: props$.map(props =>
-			div('.pongo', [
-					div('.line', 'hey now!!!')
-				])
-			])
-		),
-    onion: reducer$,
-		route$
+		DOM: xs.of(div('.pongo', [
+			div('.line', 'hey now!!!')
+		])),
+		onion: reducer$
 	}
-}
-
-export default sources => isolate(MainMenu)(sources)
-
+})(sources)
 
 function main(sources) {
 	const match$ = sources.router.define({

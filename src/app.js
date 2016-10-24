@@ -18,9 +18,9 @@ import {
 	makeDOMDriver
 } from '@cycle/dom'
 
-import MainMenu from './components/MainMenu'
+import Landing from './Landing'
 
-const main = onionify(MainMenu)
+const main = onionify(Landing)
 
 run(main, {
 	DOM: makeDOMDriver('#app'),
