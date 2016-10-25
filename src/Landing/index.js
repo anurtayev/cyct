@@ -1,20 +1,17 @@
-import xs from 'xstream'
 import isolate from '@cycle/isolate'
-import {
-	div
-} from '@cycle/dom'
-
-import style from './style.css'
-import Documents from './Documents'
+import intent from './intent'
+import model from './model'
+import view from './view'
 
 export default sources => isolate(sources => {
 
 	const state$ = sources.onion.state$
+	const actions = intent(sources.DOM)
+	const reducer$ = model(actions)
+	const vdom$ = view(state$)
 
 	return {
-		DOM: xs.of(div('.pongo', [
-			div('.line', 'hey now!!!')
-		])),
+		DOM: vdom$,
 		onion: reducer$
 	}
 })(sources)
