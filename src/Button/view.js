@@ -1,10 +1,8 @@
 import style from './style.css'
 import {
-	div,
-	p
+	div
 } from '@cycle/dom'
 
-export default state$ => state$.map(state => div('.container', [
-	div('.bigbutton', 'Big Button'),
-	p(JSON.stringify(state))
-]))
+export default state$ => state$.map(state =>
+	div('.bigbutton', state.title)
+)

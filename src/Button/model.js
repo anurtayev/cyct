@@ -4,7 +4,8 @@ function defaultReducer() {
 	return xs.of(prevState => {
 		if (typeof prevState === 'undefined') {
 			return {
-				count: -1
+				count: 0,
+				title: 'defaultTitle'
 			}
 		} else {
 			return prevState
@@ -14,11 +15,10 @@ function defaultReducer() {
 
 export default actions => {
 
-	const mainReducer$ = actions.buttonClicks$.map(oneMore => prevState => {
-    console.log('mainReducer: ' + prevState.count);
-		prevState.count += oneMore
-    return prevState
-	})
+	const mainReducer$ = actions.buttonClicks$.map(oneMore => prevState => ({
+		...prevState,
+		count: prevState.count + oneMore
+	}))
 
 	return xs.merge(defaultReducer(), mainReducer$);
 }

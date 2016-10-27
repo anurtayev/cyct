@@ -1,41 +1,28 @@
+import xs from 'xstream'
 import isolate from '@cycle/isolate'
 import intent from './intent'
 import model from './model'
 import view from './view'
+import Button from './../Button'
 
-export default sources => isolate(sources => {
+export default sources => {
 
 	const state$ = sources.onion.state$
 	const actions = intent(sources.DOM)
-	const reducer$ = model(actions)
-	const vdom$ = view(state$)
+
+	const button = isolate(Button, 'button')(sources)
+
+	const reducer$ = model(actions, {
+		button: button.onion
+	})
+
+	const vdom$ = view(state$, {
+		button: button.DOM
+	})
 
 	return {
 		DOM: vdom$,
-		onion: reducer$
-	}
-})(sources)
-
-function main(sources) {
-	const match$ = sources.router.define({
-		'/': MainMenu,
-		'/documents': Documents,
-		'/pictures': Pictures,
-		'/movies': Movies,
-		'/music': Music,
-	})
-
-	const page$ = match$.map(({
-		path,
-		value
-	}) => {
-		return value({...sources,
-			router: sources.router.path(path)
-		})
-	}).debug()
-
-	return {
-		DOM: mergeFlatten('DOM', [page$]),
-		router: mergeFlatten('route$', [page$])
+		onion: reducer$,
+    console: button.DOM
 	}
 }
