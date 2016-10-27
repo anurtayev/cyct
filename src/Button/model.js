@@ -8,7 +8,10 @@ function defaultReducer() {
 				title: 'defaultTitle'
 			}
 		} else {
-			return prevState
+			return {
+        count: 'count' in prevState ? prevState.count : 0,
+        title: 'title' in prevState ? prevState.title : 'defaultTitle'
+      }
 		}
 	})
 }

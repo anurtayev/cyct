@@ -6,10 +6,11 @@ import {
 } from '@cycle/dom'
 
 export default (state$, children) => xs
-	.combine(state$, children.button)
-	.map(([state, button]) => {
+	.combine(state$, children.button, children.button2)
+	.map(([state, button, button2]) => {
 		return div([
 			button,
-			p(JSON.stringify(state))
+			p(JSON.stringify(state)),
+      button2
 		])
 	})
