@@ -1,6 +1,6 @@
 import xs from 'xstream'
 
-const msg = 'Admin message'
+const msg = 'Happy Birthday Alex!'
 const adminEmail = 'admin@nurtai.com'
 
 function defaultReducer() {

@@ -27,6 +27,7 @@ export default sources => {
 	return {
 		DOM: vdom$,
 		onion: reducer$,
-    console: state$
+    console: state$,
+    route: actions.nav$
 	}
 }
