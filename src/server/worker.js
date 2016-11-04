@@ -1,44 +1,27 @@
-var fs = require('fs');
-var express = require('express');
-var serveStatic = require('serve-static');
-var path = require('path');
+import express from 'express'
+import serveStatic from 'serve-static'
+import path from 'path'
 
-module.exports.run = function (worker) {
-  console.log('   >> Worker PID:', process.pid);
+export default worker = > {
+  console.log('   >> Worker PID:', process.pid)
 
-  var app = require('express')();
+  const app = express()
 
-  var httpServer = worker.httpServer;
-  var scServer = worker.scServer;
+  const httpServer = worker.httpServer
+  const scServer = worker.scServer
 
-  app.use(serveStatic(path.resolve(__dirname, 'public')));
+  app.use(serveStatic(path.resolve(__dirname, 'public')))
 
-  httpServer.on('request', app);
+  httpServer.on('request', app)
 
-  var count = 0;
+  scServer.on('connection', socket => {
 
-  /*
-    In here we handle our incoming realtime connections and listen for events.
-  */
-  scServer.on('connection', function (socket) {
+    socket.on('sampleClientEvent', data => {
+      var count = 0
+      count++
+      console.log('Handled sampleClientEvent', data)
+      scServer.exchange.publish('sample', count)
+    })
 
-    // Some sample logic to show how to handle client events,
-    // replace this with your own logic
-
-    socket.on('sampleClientEvent', function (data) {
-      count++;
-      console.log('Handled sampleClientEvent', data);
-      scServer.exchange.publish('sample', count);
-    });
-
-    var interval = setInterval(function () {
-      socket.emit('rand', {
-        rand: Math.floor(Math.random() * 5)
-      });
-    }, 1000);
-
-    socket.on('disconnect', function () {
-      clearInterval(interval);
-    });
-  });
-};
+  })
+}
