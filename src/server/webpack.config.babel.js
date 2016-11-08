@@ -1,16 +1,21 @@
 import webpack from 'webpack'
+import path from 'path'
+
+console.log('cfg');
+console.log(__dirname);
+console.log(path.join(process.cwd(), 'public'))
+console.log('==>cfg');
 
 module.exports = {
 	entry: [
-		'webpack-dev-server/client?http://localhost:8080',
-		'webpack/hot/only-dev-server',
-		'./src/app.js'
+		'webpack-hot-middleware/client',
+		'./src/client/app.js'
 	],
 
 	output: {
-		path: './public',
+		path: path.join(process.cwd(), 'public'),
 		filename: 'bundle.js',
-		publicPath: 'http://localhost:8080/'
+		publicPath: '/'
 	},
 
 	module: {
@@ -29,10 +34,5 @@ module.exports = {
 	plugins: [
 		new webpack.NoErrorsPlugin(),
 		new webpack.HotModuleReplacementPlugin()
-	],
-
-	devServer: {
-		hot: true,
-		contentBase: './dist'
-	}
+	]
 }
