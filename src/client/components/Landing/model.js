@@ -1,18 +1,18 @@
 import xs from 'xstream'
 
 function defaultReducer() {
-	return xs.of(prevState => {
-		if (typeof prevState === 'undefined') {
-			return {
-				topLevelPayload: 'PL',
-        button2: {
-          title: 'fuck you!'
+    return xs.of(prevState => {
+        if (typeof prevState === 'undefined') {
+            return {
+                topLevelPayload: 'PL',
+                button2: {
+                    title: 'ronccc'
+                }
+            }
+        } else {
+            return prevState
         }
-			}
-		} else {
-			return prevState
-		}
-	})
+    })
 }
 
 export default (actions, children) =>

@@ -5,7 +5,7 @@
             "plugins": [
                 ["cycle-hmr/xstream", {
                     "include": [
-                        "**/src/components/**"
+                        "**/src/client/components/**"
                     ]
                 }]
             ]

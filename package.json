@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
-    "start": "babel-node ./src/server/server.js",
+    "start": "cross-env BABEL_ENV=development babel-node ./src/server/server.js",
     "build": "webpack",
     "serve": "cross-env BABEL_ENV=development babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server"
   },
