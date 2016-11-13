@@ -4,5 +4,8 @@ import {
 } from '@cycle/dom'
 
 export default state$ => state$.map(state =>
-	div('.bigbutton', state.title)
+	div('.bigbutton', [
+    div(state.title),
+    div('zz22')
+  ])
 )

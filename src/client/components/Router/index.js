@@ -28,6 +28,7 @@ export default sources => {
 		DOM: safeProp('DOM', page$),
 		router: safeProp('route', page$),
 		console: safeProp('console', page$),
+    Socket: safeProp('Socket', page$),
 		onion: safeProp('onion', page$)
 	}
 }

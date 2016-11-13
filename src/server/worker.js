@@ -7,36 +7,28 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 import config from './webpack.config.babel'
 
 export function run(worker) {
-    console.log('!!!=>Worker PID:', process.pid)
-    console.log(config.output.publicPath)
+	console.log('===>Worker PID:', process.pid)
 
-    const app = express()
+	const app = express()
+	const httpServer = worker.httpServer
+	const scServer = worker.scServer
 
-    const httpServer = worker.httpServer
-    const scServer = worker.scServer
+	app.use(serveStatic(config.output.path))
+	httpServer.on('request', app)
 
-    console.log(config.output.path)
-    app.use(serveStatic(config.output.path))
+	const compiler = webpack(config);
+	app.use(webpackDevMiddleware(compiler, {
+		noInfo: true,
+		publicPath: config.output.publicPath
+	}))
+	app.use(webpackHotMiddleware(compiler))
 
-    httpServer.on('request', app)
+	scServer.on('connection', socket => {
 
-    /* ===> HRM */
-    const compiler = webpack(config);
-    app.use(webpackDevMiddleware(compiler, {
-        noInfo: true,
-        publicPath: config.output.publicPath
-    }))
-    app.use(webpackHotMiddleware(compiler))
-        /* ===> end of HRM */
+		socket.on('cyct.msg1', data => {
+			console.log('incoming <cyct.msg1>', data)
+			scServer.exchange.publish('sample', 8)
+		})
 
-    scServer.on('connection', socket => {
-
-        socket.on('sampleClientEvent', data => {
-            var count = 0
-            count++
-            console.log('Handled sampleClientEvent', data)
-            scServer.exchange.publish('sample', count)
-        })
-
-    })
+	})
 }

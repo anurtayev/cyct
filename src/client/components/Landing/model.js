@@ -16,4 +16,4 @@ function defaultReducer() {
 }
 
 export default (actions, children) =>
-xs.merge(defaultReducer(), children.button, children.button2);
+  xs.merge(defaultReducer(), children.button, children.button2);

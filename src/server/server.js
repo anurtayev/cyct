@@ -1,6 +1,6 @@
 import {SocketCluster} from 'socketcluster'
 
-const socketCluster = new SocketCluster({
+new SocketCluster({
   workers: 1,
   brokers: 1,
   port: 8080,

@@ -1,11 +1,6 @@
 import webpack from 'webpack'
 import path from 'path'
 
-console.log('cfg');
-console.log(__dirname);
-console.log(path.join(process.cwd(), 'public'))
-console.log('==>cfg');
-
 module.exports = {
 	entry: [
 		'webpack-hot-middleware/client',

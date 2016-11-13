@@ -28,6 +28,7 @@ export default sources => {
 		DOM: vdom$,
 		onion: reducer$,
     console: state$,
+    Socket: actions.socketClusterOutgoing$,
     route: actions.nav$
 	}
 }

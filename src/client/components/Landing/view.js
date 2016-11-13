@@ -12,6 +12,7 @@ export default (state$, children) => xs
 			button,
 			p(JSON.stringify(state)),
 			button2,
-			div('.menushka', 'go to <><><>')
+			div('.menushka', 'go to <><><>'),
+      div('.event1', 'fire!')
 		])
 	})
