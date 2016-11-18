@@ -3,32 +3,32 @@ import isolate from '@cycle/isolate'
 import intent from './intent'
 import model from './model'
 import view from './view'
-import Button from './../Button'
+import Button1 from './../Button'
 import Button2 from './../Button'
 
 export default sources => {
 
-	const state$ = sources.onion.state$
-	const actions = intent(sources.DOM)
+    const state$ = sources.onion.state$
+    const msgButton1 = isolate(Button1, 'msgButton1')(sources)
+    const msgButton2 = isolate(Button2, 'msgButton2')(sources)
 
-  const button = isolate(Button, 'button')(sources)
-	const button2 = isolate(Button2, 'button2')(sources)
+    const actions = intent(sources.DOM, {
+        msgButton1,
+        msgButton2
+    })
 
-	const reducer$ = model(actions, {
-		button: button.onion,
-    button2: button2.onion
-	})
+    const reducer$ = model(actions)
 
-	const vdom$ = view(state$, {
-		button: button.DOM,
-    button2: button2.DOM
-	})
+    const vdom$ = view(state$, {
+        msgButton1,
+        msgButton2
+    })
 
-	return {
-		DOM: vdom$,
-		onion: reducer$,
-    console: state$,
-    Socket: actions.socketClusterOutgoing$,
-    route: actions.nav$
-	}
+    return {
+        DOM: vdom$,
+        onion: reducer$,
+        console: state$,
+        Socket: actions.socket$,
+        route: actions.nav$
+    }
 }

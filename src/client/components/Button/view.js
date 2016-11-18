@@ -1,11 +1,8 @@
 import style from './style.css'
 import {
-	div
+    div
 } from '@cycle/dom'
 
 export default state$ => state$.map(state =>
-	div('.bigbutton', [
-    div(state.title),
-    div('zz22')
-  ])
+    div('.bigbutton', state.title)
 )

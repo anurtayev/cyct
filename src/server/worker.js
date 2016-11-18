@@ -30,5 +30,10 @@ export function run(worker) {
 			scServer.exchange.publish('sample', 8)
 		})
 
+		socket.on('cyct.msg2', data => {
+			console.log('incoming <cyct.msg2>', data)
+			scServer.exchange.publish('sample nomer dva', 3.14)
+		})
+
 	})
 }

@@ -5,8 +5,11 @@ function defaultReducer() {
         if (typeof prevState === 'undefined') {
             return {
                 topLevelPayload: 'PL',
-                button2: {
+                msgButton1: {
                     title: 'ronccc'
+                },
+                msgButton2: {
+                    title: 'b#2'
                 }
             }
         } else {
@@ -15,5 +18,5 @@ function defaultReducer() {
     })
 }
 
-export default (actions, children) =>
-  xs.merge(defaultReducer(), children.button, children.button2);
+export default (actions) =>
+xs.merge(defaultReducer())
