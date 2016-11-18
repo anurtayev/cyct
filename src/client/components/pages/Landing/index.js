@@ -3,25 +3,30 @@ import isolate from '@cycle/isolate'
 import intent from './intent'
 import model from './model'
 import view from './view'
-import Button1 from './../Button'
-import Button2 from './../Button'
+import Button1 from './../../common/Button'
+import Button2 from './../../common/Button'
+import Nav1 from './../../common/Nav'
 
 export default sources => {
 
     const state$ = sources.onion.state$
-    const msgButton1 = isolate(Button1, 'msgButton1')(sources)
-    const msgButton2 = isolate(Button2, 'msgButton2')(sources)
+
+    const msg1 = isolate(Button1, 'msg1')(sources)
+    const msg2 = isolate(Button2, 'msg2')(sources)
+    const nav1 = isolate(Nav1, 'nav1')(sources)
 
     const actions = intent(sources.DOM, {
-        msgButton1,
-        msgButton2
+        msg1,
+        msg2,
+        nav1
     })
 
     const reducer$ = model(actions)
 
     const vdom$ = view(state$, {
-        msgButton1,
-        msgButton2
+        msg1,
+        msg2,
+        nav1
     })
 
     return {

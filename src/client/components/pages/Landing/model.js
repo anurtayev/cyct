@@ -5,11 +5,14 @@ function defaultReducer() {
         if (typeof prevState === 'undefined') {
             return {
                 topLevelPayload: 'PL',
-                msgButton1: {
-                    title: 'ronccc'
+                msg1: {
+                    title: 'send message 1'
                 },
-                msgButton2: {
-                    title: 'b#2'
+                msg2: {
+                    title: 'message 2 (Tsoi)'
+                },
+                nav1: {
+                    title: 'navigate to Admin'
                 }
             }
         } else {

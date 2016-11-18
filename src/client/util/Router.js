@@ -1,6 +1,6 @@
 import xs from 'xstream'
-import Landing from './../Landing'
-import Admin from './../Admin'
+import Landing from './../components/pages/Landing'
+import Admin from './../components/pages/Admin'
 
 import {
 	propOr
@@ -22,7 +22,7 @@ export default sources => {
 	}) => value({
 		...sources,
 		router: sources.router.path(path)
-	})).debug()
+	}))
 
 	return {
 		DOM: safeProp('DOM', page$),

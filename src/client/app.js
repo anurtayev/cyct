@@ -19,7 +19,7 @@ import {
 	makeDOMDriver
 } from '@cycle/dom'
 
-import Router from './components/Router'
+import Router from './util/Router'
 
 const main = onionify(Router)
 
