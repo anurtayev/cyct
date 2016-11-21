@@ -4,22 +4,23 @@ function defaultReducer() {
     return xs.of(prevState => {
         if (typeof prevState === 'undefined') {
             return {
-                topLevelPayload: 'PL',
-                msg1: {
-                    title: 'send message 1'
-                },
-                msg2: {
-                    title: 'message 2 (Tsoi)'
-                },
-                nav1: {
-                    title: 'navigate to Admin'
-                }
+                name: ''
             }
         } else {
-            return prevState
+            return {
+              name: 'name' in prevState ? prevState.name : '',
+            }
         }
     })
 }
 
-export default (actions) =>
-xs.merge(defaultReducer())
+export default ({
+    name$
+}) => {
+
+    const mainReducer$ = name$.map(name => prevState => ({
+      name
+    }))
+
+    return xs.merge(defaultReducer(), mainReducer$);
+}

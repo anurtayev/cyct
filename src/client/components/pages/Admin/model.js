@@ -21,9 +21,11 @@ function defaultReducer() {
     })
 }
 
-export default actions => {
+export default ({
+    counter$
+}) => {
 
-    const mainReducer$ = actions.counter$.map(delta => prevState => ({
+    const mainReducer$ = counter$.map(delta => prevState => ({
         ...prevState,
         clicksCounter: prevState.clicksCounter + delta
     }))

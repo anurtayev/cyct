@@ -2,29 +2,23 @@ import style from './style.css'
 import xs from 'xstream'
 import {
     div,
-    p,
-    nav
+    nav,
+    button,
+    a,
+    input
 } from '@cycle/dom'
 
-export default (state$, {
-    msg1,
-    msg2,
-    nav1
-}) => xs
-    .combine(
-        state$,
-        msg1.DOM,
-        msg2.DOM,
-        nav1.DOM
-    )
-    .map(([state, msg1, msg2, nav1]) =>
+export default state$ =>
+    state$.map(state =>
         div([
-            nav([nav1]),
-            div('.workArea', [
-                msg1,
+            nav([
+                a('.Landing.nav1', 'admin')
+            ]),
+            div('.Landing.workArea', [
+                button('.Landing.msg1', 'message1'),
                 div('------------------------'),
-                msg2,
-                p(JSON.stringify(state))
+                button('.Landing.msg2', 'message with Tsoi song'),
+                input('.Landing.nameInput', {attrs: {value: state.name }})
             ])
         ])
     )

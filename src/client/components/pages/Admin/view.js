@@ -4,21 +4,20 @@ import {
     div,
     p,
     button,
-    nav
+    nav,
+    a
 } from '@cycle/dom'
 
-export default (state$, children) => xs
-    .combine(
-        state$,
-        children.nav1.DOM
-    )
-    .map(([state, nav1]) =>
+export default state$ =>
+    state$.map(state =>
         div([
-            nav([nav1]),
+            nav([
+                a('.Admin.nav1', 'to Landing Screen')
+            ]),
             div([
-                button('.inc', '+'),
+                button('.Admin.inc', '+'),
                 p(state.clicksCounter),
-                button('.dec', '-'),
+                button('.Admin.dec', '-'),
                 p(state.msg),
                 p(state.adminEmail)
             ])

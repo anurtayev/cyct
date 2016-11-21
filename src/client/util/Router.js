@@ -1,6 +1,7 @@
 import xs from 'xstream'
 import Landing from './../components/pages/Landing'
 import Admin from './../components/pages/Admin'
+import isolate from '@cycle/isolate'
 
 import {
 	propOr
@@ -14,8 +15,8 @@ const safeProp = (key, page$) =>
 export default sources => {
 
 	const page$ = sources.router.define({
-		'/': Landing,
-		'/admin': Admin
+		'/': isolate(Landing),
+		'/admin': isolate(Admin)
 	}).map(({
 		path,
 		value

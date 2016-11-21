@@ -1,14 +1,19 @@
 import xs from 'xstream'
 
-export default (domSource, children) => ({
-    nav$: children.nav1.click$.map(e => '/'),
+export default ({
+    DOM
+}) => ({
+    nav$: DOM
+        .select('.Admin.nav1')
+        .events('click')
+        .map(e => '/'),
     counter$: xs.merge(
-        domSource
-        .select('.inc')
+        DOM
+        .select('.Admin.inc')
         .events('click')
         .map(e => 1),
-        domSource
-        .select('.dec')
+        DOM
+        .select('.Admin.dec')
         .events('click')
         .map(e => -1)
     )
