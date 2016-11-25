@@ -1,5 +1,7 @@
-export default domSource => {
+export default ({
+    DOM
+}) => {
     return {
-        click$: domSource.select('.bigbutton').events('click')
+        click$: DOM.select('.Nav').events('click')
     }
 }

@@ -1,7 +1,9 @@
-.bigbutton {
-  width: 300px;
-  height: 100px;
+.Nav {
+  width: 90px;
+  height: 40px;
   border: 1px solid black;
+  margin-top: 1em;
+  margin-bottom: 1em;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -12,10 +14,10 @@
   background: blueviolet;
 }
 
-.bigbutton:not(:active) {
+.Nav:not(:active) {
     transition: background-color 50ms step-end;
 }
 
-.bigbutton:active {
+.Nav:active {
     background: darkblue;
 }

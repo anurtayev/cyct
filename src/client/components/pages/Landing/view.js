@@ -8,17 +8,23 @@ import {
     input
 } from '@cycle/dom'
 
-export default state$ =>
-    state$.map(state =>
-        div([
-            nav([
-                a('.Landing.nav1', 'admin')
-            ]),
-            div('.Landing.workArea', [
-                button('.Landing.msg1', 'message1'),
-                div('------------------------'),
-                button('.Landing.msg2', 'message with Tsoi song'),
-                input('.Landing.nameInput', {attrs: {value: state.name }})
-            ])
+export default (state$, {
+    nav1
+}) =>
+state$.map(state =>
+    div([
+        nav([
+            nav1.DOM
+        ]),
+        div('.Landing.workArea', [
+            button('.Landing.msg1', 'message1'),
+            div('------------------------'),
+            button('.Landing.msg2', 'message with Tsoi song'),
+            input('.Landing.nameInput', {
+                attrs: {
+                    value: state.name
+                }
+            })
         ])
-    )
+    ])
+)

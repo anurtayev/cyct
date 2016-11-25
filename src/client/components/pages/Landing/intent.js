@@ -2,9 +2,10 @@ import xs from 'xstream'
 
 export default ({
     DOM
+}, {
+    nav1
 }) => ({
-    nav$: DOM.select('.Landing.nav1')
-        .events('click')
+    nav$: nav1.click
         .map(e => '/admin'),
     name$: DOM.select('.Landing.nameInput')
         .events('input')
