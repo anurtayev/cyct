@@ -10,14 +10,11 @@ import {
 
 export default (state$, {
     nav1
-}) => {
-
-    console.log('here:');
-    console.log(nav1.DOM);
-
-    return state$.map(state =>
+}) =>
+xs.combine(state$, nav1.DOM)
+    .map(([state, nav1dom]) =>
         div([
-            nav1,
+            nav1dom,
             div('.Landing.workArea', {
                 style: {
                     'display': 'flex',
@@ -39,4 +36,3 @@ export default (state$, {
             ])
         ])
     )
-}

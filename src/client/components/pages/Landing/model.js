@@ -1,6 +1,6 @@
 import xs from 'xstream'
 
-const title = 'navigatte to Admin screen'
+const title = 'navigatte'
 
 function defaultReducer() {
     return xs.of(prevState => {
