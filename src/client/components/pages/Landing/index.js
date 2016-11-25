@@ -15,7 +15,7 @@ export default sources => {
     const actions = intent(sources, {
         nav1
     })
-    
+
     const reducer$ = model(actions)
 
     const vdom$ = view(state$, {

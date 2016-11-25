@@ -10,21 +10,33 @@ import {
 
 export default (state$, {
     nav1
-}) =>
-state$.map(state =>
-    div([
-        nav([
-            nav1.DOM
-        ]),
-        div('.Landing.workArea', [
-            button('.Landing.msg1', 'message1'),
-            div('------------------------'),
-            button('.Landing.msg2', 'message with Tsoi song'),
-            input('.Landing.nameInput', {
-                attrs: {
-                    value: state.name
+}) => {
+
+    console.log('here:');
+    console.log(nav1.DOM);
+
+    return state$.map(state =>
+        div([
+            nav1,
+            div('.Landing.workArea', {
+                style: {
+                    'display': 'flex',
+                    'flex-direction': 'column'
                 }
-            })
+            }, [
+                button('.Landing.msg1', {
+                        style: {
+                            'margin-top': '1em'
+                        }
+                    },
+                    'message1'),
+                button('.Landing.msg2', 'message with Tsoi song'),
+                input('.Landing.nameInput', {
+                    attrs: {
+                        value: state.name
+                    }
+                })
+            ])
         ])
-    ])
-)
+    )
+}
