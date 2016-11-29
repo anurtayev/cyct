@@ -8,10 +8,11 @@ import {
     input
 } from '@cycle/dom'
 
-export default (state$, {
-    nav1
+export default ({
+    state$,
+    nav1dom$
 }) =>
-xs.combine(state$, nav1.DOM)
+xs.combine(state$, nav1dom$)
     .map(([state, nav1dom]) =>
         div([
             nav1dom,

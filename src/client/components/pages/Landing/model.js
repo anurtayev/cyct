@@ -16,21 +16,39 @@ function defaultReducer() {
                 name: 'name' in prevState ? prevState.name : '',
                 nav1: {
                     title
-                }
+                },
+                metadata: 0
             }
         }
     })
 }
 
 export default ({
-    name$
+    name$,
+    files$,
+    metadata$
 }) => {
 
-    const mainReducer$ = name$.map(name =>
+    const mainReducer$ = name$
+        .map(name =>
+            prevState => ({
+                ...prevState,
+                name
+            }))
+
+    const filesReducer$ = files$.map(
+        files =>
         prevState => ({
             ...prevState,
-            name
+            files
         }))
 
-    return xs.merge(defaultReducer(), mainReducer$);
+    const metadataReducer$ = metadata$.map(
+        metadata =>
+        prevState => ({
+            ...prevState,
+            metadata: prevState.metadata + metadata
+        }))
+
+    return xs.merge(defaultReducer(), mainReducer$, filesReducer$, metadataReducer$);
 }

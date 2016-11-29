@@ -12,14 +12,13 @@ export default sources => {
 
     const nav1 = isolate(Nav1, 'nav1')(sources)
 
-    const actions = intent(sources, {
-        nav1
-    })
+    const actions = intent(sources)
 
     const reducer$ = model(actions)
 
-    const vdom$ = view(state$, {
-        nav1
+    const vdom$ = view({
+        state$,
+        nav1dom$: nav1.DOM
     })
 
     return {
@@ -27,6 +26,6 @@ export default sources => {
         onion: reducer$,
         console: state$,
         Socket: actions.socket$,
-        route: actions.nav$
+        route: nav1.click.map(e => '/admin')
     }
 }
